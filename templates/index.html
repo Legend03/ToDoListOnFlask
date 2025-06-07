@@ -6,16 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>My To Do List</title>
 </head>
 
-<body>
-    <header class="container">
+<body class="container">
+    <header>
         <div class="text-center">
             <h1>My To Do List</h1>
-            <button type="button" class="btn btn-primary">Add task</button>
+            <button type="button" class="btn btn-primary" id="show_add_model" data-bs-toggle="modal"
+                data-bs-target="#add_model">Add task</button>
         </div>
     </header>
-</body>
+    <br>
+    <main>
+        <div class="row header fw-bold text-center">
+            <div class="col-1">#</div>
+            <div class="col-3">Title</div>
+            <div class="col-7">Content</div>
+            <div class="col-1">Status</div>
+        </div>
+        {% for task in all_tasks %}
+        <div class="row task-row" data-id="{{ task.id }}">
+            <div class="col-1 index fw-bold text-center">{{ loop.index }}</div>
+            <div class="col-3">{{ task.title }}</div>
+            <div class="col-7">{{ task.content }}</div>
+            <div class="col-1 text-center">
+                <button class="status-button">
+                    {% if task.status %}
+                    <i class="fs-4 bi-check-circle-fill text-success" data-status="true"></i>
+                    {% else %}
+                    <i class="fs-4 bi-x-circle-fill text-danger" data-status="false"></i>
+                    {% endif %}
+                </button>
+            </div>
+        </div>        
+        {% endfor %}
+    </main>
+    <div class="modal fade" id="add_model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/create-task" method="post">
+                        <label for="taskName">Task name:</label>
+                        <input id="taskName" type="text" class="form-control" placeholder="Task name" name="title"
+                        maxlength="100" required><br>
 
+                        <label for="taskContent">About task:</label><br>
+                        <textarea id="taskContent" class="form-multiline form-control" placeholder="About task..."
+                                  name="content" maxlength="200"></textarea>
+                        <br>
+
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </html>

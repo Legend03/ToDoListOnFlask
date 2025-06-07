@@ -1,0 +1,23 @@
+i{
+    cursor: pointer;
+}
+
+button.status-button {
+     background: none;
+     border: none;
+     padding: 0;
+}
+
+.row{
+    padding: 10px 0px;
+    border-bottom: skyblue 1px solid;
+}
+
+.row.header{
+    border-bottom: black 3px solid;
+}
+
+.row.col-1.index{
+    padding: 0;
+    border-right: black 3px solid;
+}
