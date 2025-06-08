@@ -8,9 +8,15 @@ button.status-button {
      padding: 0;
 }
 
+#show_add_model{
+    background: mediumpurple;
+    border-color: mediumpurple;
+}
+
 .row{
+    align-items: center;
     padding: 10px 0px;
-    border-bottom: skyblue 1px solid;
+    border-bottom: mediumpurple 1px solid;
 }
 
 .row.header{
@@ -20,4 +26,60 @@ button.status-button {
 .row.col-1.index{
     padding: 0;
     border-right: black 3px solid;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.week-dates{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.week-days, .week-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 5px;
+}
+
+.week-days .day {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.week-dates .date {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.week-dates .date:hover {
+    background-color: #f0f0f0;
+}
+
+.week-dates .date.selected {
+    background-color: mediumpurple;
+    color: white;
+}
+
+.week-dates .date.today {
+    font-weight: bold;
+    border: 1px solid mediumpurple;
+}
+
+.button-calendar {
+    color: mediumpurple;
+    background: none;
+    border: 0;
+    font-size: xx-large;
 }
