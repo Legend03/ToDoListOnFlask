@@ -22,6 +22,24 @@
     </header>
     <br>
     <main>
+        <h3 class="current-week text-center"></h3>
+        <div class="calendar-container">
+            <button class="button-calendar prev-week">&lt;</button>
+            <div class="calendar-header">
+                <div class="week-days">
+                    <div class="day">SUN</div>
+                    <div class="day">MON</div>
+                    <div class="day">TUE</div>
+                    <div class="day">WED</div>
+                    <div class="day">THU</div>
+                    <div class="day">FRI</div>
+                    <div class="day">SAT</div>
+                </div>
+                <div class="week-dates"></div>
+            </div>
+            <button class="button-calendar next-week">&gt;</button>
+        </div>
+
         <div class="row header fw-bold text-center">
             <div class="col-1">#</div>
             <div class="col-3">Title</div>
@@ -72,5 +90,6 @@
         </div>
     </div>
 </body>
+<script src="{{ url_for('static', filename='js/calendar-slider.js') }}"></script>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </html>
