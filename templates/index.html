@@ -46,26 +46,9 @@
             <div class="col-7">Content</div>
             <div class="col-1">Status</div>
         </div>
-        <div class="tasks-row">
-            {% for task in tasks %}
-            <div class="row task-row" data-id="{{ task.id }}">
-                <div class="col-1 index fw-bold text-center">{{ loop.index }}</div>
-                <div class="col-3">{{ task.title }}</div>
-                <div class="col-7">{{ task.content }}</div>
-                <div class="col-1 text-center">
-                    <button class="status-button">
-                        {% if task.status %}
-                        <i class="fs-4 bi-check-circle-fill text-success" data-status="true"></i>
-                        {% else %}
-                        <i class="fs-4 bi-x-circle-fill text-danger" data-status="false"></i>
-                        {% endif %}
-                    </button>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+        <div class="tasks-row"></div>
     </main>
-    <div class="modal fade" id="add_model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="add_model" tabindex="-1" aria-labelledby="add_model" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -95,5 +78,5 @@
         </div>
     </div>
 </body>
-<script src="{{ url_for('static', filename='js/calendar-slider.js') }}"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </html>

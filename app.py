@@ -25,8 +25,36 @@ class Task(db.Model):
 
 @app.route('/')
 def index():
-    today_tasks = Task.query.filter(Task.date == date.today()).order_by(Task.status, Task.title).all()
-    return render_template('index.html', tasks = today_tasks)
+    return render_template('index.html')
+
+@app.route('/get-tasks', methods=['POST'])
+def get_tasks():
+    data = request.get_json()
+
+    if 'selected_date' not in data:
+        return jsonify({
+            'success': False,
+            'error': 'Invalid date',
+            'date': data['selected_date'],
+        }, 400)
+
+    selected_date = data['selected_date'][:10]
+
+    tasks_by_selected_date = Task.query.filter(Task.date == selected_date).all()
+
+    tasks_data = [{
+        'id': task.id,
+        'title': task.title,
+        'content': task.content,
+        'date': task.date,
+        'status': task.status,
+    } for task in tasks_by_selected_date]
+
+    return jsonify({
+        'success': True,
+        'message': 'Tasks got successfully',
+        'tasks_data': tasks_data,
+    })
 
 @app.route('/create-task', methods = ["POST"])
 def create_task():
@@ -40,13 +68,13 @@ def create_task():
     db.session.add(new_task)
     db.session.commit()
 
-    return redirect("/update-task-list")
+    return redirect("/")
 
 @app.route('/update-task-status', methods = ["POST"])
 def update_task_status():
     data = request.get_json()
 
-    if data['new_status'] in data:
+    if 'new_status' in data:
         return jsonify({
             'success': False,
             'error': 'Invalid status'
@@ -60,38 +88,8 @@ def update_task_status():
     return jsonify({
         'success': True,
         'message': 'Task updated successfully',
-        'task_id': data['task_id'],
+        'id': int(data['task_id']),
         'new_status': data['new_status']
-    })
-
-@app.route('/update-task-list', methods = ["POST"])
-def update_task_list():
-    data = request.get_json()
-
-    if 'selected_date' not in data:
-        return jsonify({
-            'success': False,
-            'error': 'Invalid date',
-            'date': data['selected_date'],
-        }, 400)
-
-    selected_date = data['selected_date'][:10]
-
-    tasks_by_selected_date = Task.query.filter(Task.date == selected_date).order_by(Task.status, Task.title).all()
-
-    tasks_data = [{
-        'id': task.id,
-        'title': task.title,
-        'content': task.content,
-        'date': task.date,
-        'status': task.status,
-    } for task in tasks_by_selected_date]
-
-    print(tasks_by_selected_date)
-    return jsonify({
-        'success': True,
-        'message': 'Tasks got successfully',
-        'tasks_data': tasks_data,
     })
 
 if __name__ == '__main__':
