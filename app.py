@@ -1,5 +1,3 @@
-import datetime
-
 from flask import Flask, request, redirect, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
@@ -74,7 +72,7 @@ def create_task():
 def update_task_status():
     data = request.get_json()
 
-    if 'new_status' in data:
+    if 'new_status' not in data:
         return jsonify({
             'success': False,
             'error': 'Invalid status'

@@ -14,37 +14,58 @@
 
 <body class="container">
     <header>
-        <div class="text-center">
-            <h1>My To Do List</h1>
-            <button type="button" class="btn btn-primary" id="show_add_model" data-bs-toggle="modal"
-                data-bs-target="#add_model">Add task</button>
-        </div>
-    </header>
-    <br>
-    <main>
-        <h3 class="current-week text-center"></h3>
-        <div class="calendar-container">
-            <button class="button-calendar prev-week">&lt;</button>
-            <div class="calendar-header">
-                <div class="week-days">
-                    <div class="day">MON</div>
-                    <div class="day">TUE</div>
-                    <div class="day">WED</div>
-                    <div class="day">THU</div>
-                    <div class="day">FRI</div>
-                    <div class="day">SAT</div>
-                    <div class="day">SUN</div>
-                </div>
-                <div class="week-dates"></div>
+
+        <div>
+            <div class="text-center">
+                <h1>My To Do List</h1>
+                <button type="button" class="btn btn-primary" id="show_add_model" data-bs-toggle="modal"
+                    data-bs-target="#add_model">Add task</button>
             </div>
-            <button class="button-calendar next-week">&gt;</button>
+            <h3 class="current-week text-center"></h3>
+            <div class="calendar-container">
+                <button class="button-calendar prev-week">&lt;</button>
+                <div class="calendar-header">
+                    <div class="week-days">
+                        <div class="day">MON</div>
+                        <div class="day">TUE</div>
+                        <div class="day">WED</div>
+                        <div class="day">THU</div>
+                        <div class="day">FRI</div>
+                        <div class="day">SAT</div>
+                        <div class="day">SUN</div>
+                    </div>
+                    <div class="week-dates"></div>
+                </div>
+                <button class="button-calendar next-week">&gt;</button>
+            </div>
         </div>
 
+        <div class="circle_diagrams">
+            <div class="achievement_on_days">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg"
+                        d="M18 2.0845
+                           a 15.9155 15.9155 0 0 1 0 31.831
+                           a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                    <path class="circle"
+                        stroke-dasharray="0, 100"
+                        d="M18 2.0845
+                           a 15.9155 15.9155 0 0 1 0 31.831
+                           a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                    <text x="18" y="20.5" class="percentage">0%</text>
+                </svg>
+                <h5>За день</h5>
+            </div>
+        </div>
+    </header>
+    <main>
         <div class="row header fw-bold text-center">
             <div class="col-1">#</div>
             <div class="col-3">Title</div>
-            <div class="col-7">Content</div>
-            <div class="col-1">Status</div>
+            <div class="col-6">Content</div>
+            <div class="col-2">Status</div>
         </div>
         <div class="tasks-row"></div>
     </main>

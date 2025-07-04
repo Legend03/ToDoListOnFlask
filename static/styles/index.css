@@ -17,6 +17,7 @@ button.status-button {
     align-items: center;
     padding: 10px 0px;
     border-bottom: mediumpurple 1px solid;
+    flex-wrap: wrap;
 }
 
 .row.header{
@@ -82,4 +83,51 @@ button.status-button {
     background: none;
     border: 0;
     font-size: xx-large;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle_diagrams{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.circle_diagrams div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circular-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1s ease-in-out;
+    stroke: #4CAF50;
+}
+
+.percentage {
+    fill: #666;
+    font-size: 0.5em;
+    text-anchor: middle;
 }
