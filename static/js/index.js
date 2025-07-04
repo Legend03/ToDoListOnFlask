@@ -25,7 +25,8 @@ function load_data_by_date(date) {
 
             if (data.success) {
                 update_week_view(data['tasks_by_selected_date']);
-                render_tasks_list(sort_list_by_status(tasks_list))
+                render_tasks_list(sort_list_by_status(tasks_list));
+                update_diagram(tasks_list);
             }
         })
 }
@@ -52,10 +53,10 @@ function render_tasks_list(tasks_list) {
         col_title.classList.add('col-3');
         col_title.textContent = task['title'];
 
-        col_content.classList.add('col-7');
+        col_content.classList.add('col-6');
         col_content.textContent = task['content']
 
-        col_status.classList.add('col-1', 'text-center');
+        col_status.classList.add('col-2', 'text-center');
 
         button_status.classList.add('status-button')
 
@@ -104,6 +105,7 @@ function add_event_listener_on_status_button() {
                             tasks_list[index].status = new_status;
                         }
                         render_tasks_list(sort_list_by_status(tasks_list));
+                        update_diagram(tasks_list);
                     }
                 )
         })
@@ -115,6 +117,24 @@ function sort_list_by_status(tasks_list){
         if (a.status !== b.status) return a.status ? 1: -1;
         return a.title.localeCompare(b.title)
     })
+}
+
+function update_diagram(tasks){
+    const daily_progress = calculate_completion_tasks(tasks);
+    const diagram = document.querySelector('.achievement_on_days');
+
+    const circle = diagram.querySelector('.circle');
+    const percentage = diagram.querySelector('.percentage');
+
+    circle.style.strokeDasharray = `${daily_progress}, ${100 - daily_progress}`;
+    percentage.textContent = `${daily_progress}%`;
+}
+
+function calculate_completion_tasks(tasks){
+    if (tasks.length === 0) return 0;
+
+    const completed = tasks.filter(task => task.status).length;
+    return Math.round((completed / tasks.length) * 100);
 }
 
 function update_week_view(){
