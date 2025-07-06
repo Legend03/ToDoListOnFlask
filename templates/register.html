@@ -9,19 +9,22 @@
 <body>
     <div class="register">
         <h2>SIGN UP</h2>
-        <form method="POST">
+        <form action="/register-user" method="POST">
+            <span id="error" class="mt-3"></span>
+
             <label class="mt-3" for="email">Email</label>
             <input class="form-control"  id="email" type="email" name="email" required>
 
-            <label class="mt-3" for="email">Password</label>
+            <label class="mt-3" for="password">Password</label>
             <input class="form-control"  id="password" type="password" name="password" required>
 
-            <label class="mt-3" for="email">Confirm password</label>
+            <label class="mt-3" for="confirm_password">Confirm password</label>
             <input class="form-control"  id="confirm_password" type="password" name="confirm_password"required>
 
-            <button class="btn btn-primary mt-3"  type="button">Sign up</button>
+            <button class="btn btn-primary mt-3"  type="submit">Sign up</button>
         </form>
         <p class="mt-3">Already have an account? <a href="/login">Sign in</a></p>
     </div>
 </body>
+<script src="{{ url_for('static', filename='js/register.js') }}"></script>
 </html>

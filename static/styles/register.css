@@ -28,3 +28,8 @@ form{
     display: flex;
     flex-direction: column;
 }
+
+#error{
+    color: red;
+    visibility: hidden;
+}
