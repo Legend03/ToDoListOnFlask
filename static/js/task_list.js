@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     load_data_by_date(current_date);
 })
 
+document.getElementById('logout').addEventListener('click', () => {
+    window.location.href = '/login'
+})
+
 function load_data_by_date(date) {
     fetch(`/get-tasks`, {
         method: 'POST',
