@@ -1,5 +1,4 @@
 from functools import wraps
-
 from flask import Flask, request, redirect, render_template, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
@@ -39,8 +38,9 @@ def login_required(f):
     return wrap
 
 @app.route('/')
+@login_required
 def index():
-    return redirect('/login')
+    return redirect('/load-task-list')
 
 @app.route('/login')
 def login():

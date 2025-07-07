@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 document.getElementById('logout').addEventListener('click', () => {
-    window.location.href = '/login'
+    fetch('/logout', { method: 'GET' })
+        .then(() => window.location.href = '/login' )
 })
 
 function load_data_by_date(date) {
